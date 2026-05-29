@@ -1,0 +1,92 @@
+# CLAUDE.md — <PROJECT_NAME>
+
+<!--
+Drop this file at the root of your project. Claude Desktop and Claude
+Code read it automatically and use it as project-level context for every
+conversation.
+
+Keep it under ~250 lines. Anything longer should live in dedicated docs
+(`docs/architecture.md`, `docs/conventions.md`) and be linked from here.
+
+Replace every <PLACEHOLDER>. Delete this comment block when done.
+-->
+
+## Project context
+
+<2-4 sentences on what the project is, who it is for, what stage it is
+at. The reader (Claude) does not have product context unless you provide
+it here.
+
+Example:
+"<PROJECT_NAME> is a Stripe-backed invoicing API for B2B SaaS customers.
+It exposes REST endpoints for billing operations and webhooks for
+external systems. Production for ~18 months; ~50 customers, ~$1M ARR. The
+codebase is owned by a 4-person platform team.">
+
+## Tech stack
+
+<Bullet list of the languages, frameworks, and major runtime services.
+Be specific about versions where they matter.
+
+Example:
+- TypeScript 5.4, Node 22 (LTS)
+- Hono on Cloudflare Workers
+- Postgres 16 (Neon), accessed via Drizzle ORM
+- Stripe SDK v15
+- Vitest for tests
+- Biome for lint+format>
+
+## Conventions
+
+<Concrete rules the assistant should follow. Examples:
+- Files: kebab-case.ts.
+- Each route handler is its own file under `src/api/`.
+- All DB queries go through `src/db/queries/`; no inline SQL elsewhere.
+- Errors thrown to the user use the typed `ApiError` class; never bare
+  `throw new Error`.
+- Tests for `src/api/foo.ts` live at `src/api/foo.test.ts`.
+- Branch naming: `<author>/<short-slug>`.
+- Commit messages: imperative mood, ≤72 chars on subject line.>
+
+## Do
+
+<Bullet list of behaviours you want. Examples:
+- Plan changes before writing code for anything touching more than one
+  file.
+- Cite `path:line` for every reference to existing code.
+- Use the existing types in `src/types.ts` rather than redeclaring them.
+- Run `<TEST_COMMAND>` before reporting work as done.>
+
+## Don't
+
+<Bullet list of behaviours you don't want. Examples:
+- Don't add new top-level dependencies without proposing it first.
+- Don't modify `migrations/*` — always create a new migration file.
+- Don't write code in any language other than TypeScript.
+- Don't add comments that explain WHAT the code does; only WHY when
+  non-obvious.>
+
+## Key files and their purpose
+
+<Annotated list of the most important files / directories, so the
+assistant can navigate without exhaustively reading the repo. Examples:
+- `src/index.ts` — Hono app entry; route registration.
+- `src/api/*` — HTTP handlers, one file per resource.
+- `src/db/schema.ts` — single source of truth for the DB schema (Drizzle).
+- `src/db/queries/*` — query functions; no inline SQL outside this dir.
+- `src/lib/auth.ts` — session/JWT helpers; used by middleware.
+- `src/lib/errors.ts` — the `ApiError` class and error-to-HTTP mapping.
+- `src/types.ts` — shared TypeScript types.
+- `docs/architecture.md` — read this before proposing structural changes.>
+
+## Important context the assistant does not have
+
+<Things the assistant cannot infer from the code alone, that should
+inform its suggestions. Optional but high-value. Examples:
+- "We migrated from REST to RPC last quarter. Some legacy REST endpoints
+  remain under `src/api/legacy/*` — do not extend them, they are
+  scheduled for removal."
+- "Our DB is shared with the analytics product. Schema changes require
+  coordination — flag any change to migrations/ for human review."
+- "Performance: target p95 < 200ms on read endpoints. Mention if a
+  change is likely to break this.">

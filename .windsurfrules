@@ -1,0 +1,107 @@
+# AI-First Dev Rules (Cursor / Windsurf)
+#
+# Rules are listed in strict priority order. When two rules conflict, the
+# lower-numbered rule wins. These rules apply across TypeScript/JavaScript,
+# Python, and Go. Language-specific clauses are marked inline.
+
+## 1. Never invent APIs, files, or symbols
+
+- Before referencing a function, type, file, or package, verify it exists in
+  the current codebase or in the declared dependencies.
+- If you cannot verify, say so explicitly and ask, rather than guessing.
+- When citing a location, always include the path (e.g. `src/auth/session.ts:42`).
+- Do not fabricate package names, version numbers, or CLI flags.
+
+## 2. Plan, then confirm, then execute
+
+- For any change that touches more than one file or is non-trivial, output a
+  short plan first: what you will change and why. Wait for the user to
+  confirm before editing.
+- For trivial single-file edits (typo, rename, one-line fix), proceed
+  directly but state what you did.
+- Never silently expand scope. If you discover unrelated issues, list them
+  for the user instead of fixing them inline.
+
+## 3. TypeScript: strict mode, no `any`
+
+- Treat `tsconfig.json` `strict: true` as non-negotiable. If the user's
+  config does not have it, recommend turning it on.
+- Never write `any`. Use `unknown` and narrow, or define the precise type.
+- Prefer `type` for unions/aliases, `interface` for object shapes that may
+  be extended.
+- Never use `// @ts-ignore` or `// @ts-expect-error` without a comment
+  explaining why and a linked issue or commit if applicable.
+
+## 4. Python: type-hint everything that crosses a boundary
+
+- Functions, methods, and module-level constants must have type hints.
+- Use `from __future__ import annotations` in Python 3.9+ codebases.
+- Prefer `pydantic` or `dataclasses` over untyped dicts for structured data.
+- Match the project's existing tooling (ruff/black/mypy) — do not introduce
+  a new formatter or linter without asking.
+
+## 5. Go: small interfaces, explicit errors
+
+- Define interfaces at the consumer, not the producer.
+- Never swallow errors. Wrap with `fmt.Errorf("doing X: %w", err)` and let
+  the caller decide.
+- Use `context.Context` as the first parameter for any function that does
+  I/O or could be cancelled.
+
+## 6. Naming conventions
+
+- Files: `kebab-case.ts`, `snake_case.py`, `snake_case.go`. Match the
+  surrounding directory if it is consistent.
+- Types/classes: `PascalCase` across all three languages.
+- Functions/methods: `camelCase` (TS/JS), `snake_case` (Python), `PascalCase`
+  for exported / `camelCase` for unexported (Go).
+- Constants: `SCREAMING_SNAKE_CASE` (TS/Python), `PascalCase` (Go exported).
+- Booleans: prefix with `is`, `has`, `should`, `can`, or `did`.
+- No abbreviations except `id`, `url`, `http`, `db`, `api`.
+
+## 7. Error handling: never silently catch
+
+- Every `catch` / `except` / `if err != nil` block must either: re-throw with
+  added context, log with structured metadata, or return a typed error to
+  the caller.
+- Empty `catch {}` blocks are forbidden. If you genuinely want to ignore an
+  error, add a one-line comment explaining why and what invariant guarantees
+  it is safe.
+- Never use `try/except Exception` (Python) or `catch (e)` without typing
+  (TS) as a control-flow shortcut.
+
+## 8. Output incremental progress
+
+- For multi-step tasks, produce the smallest reviewable unit first (one
+  function, one file, one migration) and confirm before the next.
+- Do not rewrite a file end-to-end if a focused diff would do.
+- When refactoring, preserve public APIs unless the user has explicitly
+  asked for a breaking change.
+
+## 9. Anti-patterns to avoid
+
+- **God objects / files**: a single class or file owning more than 3
+  conceptual responsibilities. Split.
+- **Deep nesting**: more than 3 levels of indentation in a function. Use
+  early returns / guard clauses / extracted helpers.
+- **Magic strings/numbers**: lift to named constants at the top of the
+  module.
+- **Premature abstraction**: do not extract a helper or interface until
+  there are at least 3 concrete callers. Two is a coincidence; three is a
+  pattern.
+- **Cross-cutting comments**: do not write comments that explain *what* the
+  code does. Write comments only for *why* — non-obvious constraints, hidden
+  invariants, or workarounds.
+- **TODO without owner**: every `TODO` must include a name and a date or a
+  linked issue. Otherwise delete it.
+- **Test mocks for code you own**: prefer integration tests over mocking
+  internal modules. Mock only at the system boundary (HTTP, DB, clock,
+  filesystem).
+- **Unsafe defaults**: never default to `*` CORS, `chmod 777`, `eval`, or
+  unparameterised SQL.
+
+## 10. When in doubt
+
+- Read the file first. Then grep for callers. Then ask the user.
+- If the user says "do X" and X would violate one of these rules, say so
+  before doing it.

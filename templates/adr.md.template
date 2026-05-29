@@ -1,0 +1,67 @@
+# ADR-<NUMBER>: <SHORT_TITLE>
+
+<!--
+Architecture Decision Record. Lightweight format inspired by Michael
+Nygard's original ADR template.
+
+Filename: docs/adrs/<NUMBER>-<short-slug>.md (e.g. 0007-use-postgres.md).
+Numbering is monotonic; do not renumber when an ADR is superseded.
+
+Delete this comment block before committing.
+-->
+
+**Status:** proposed | accepted | superseded by ADR-XXX | deprecated
+**Date:** <YYYY-MM-DD>
+**Deciders:** <names or roles>
+**Stakeholders consulted:** <names or roles>
+
+## Context
+
+<What is the situation that forces a decision? What constraints are
+in play (technical, organisational, time)? 1-3 short paragraphs.
+
+A good Context section makes the decision feel inevitable in hindsight
+to someone who didn't live through it. State the facts; do not advocate
+yet.>
+
+## Decision
+
+<The choice made. One paragraph. Use imperative, present tense:
+"We will use Postgres for transactional storage", not "We should…" or
+"It is decided that…". State the choice; defend it in the next section.>
+
+## Consequences
+
+### Positive
+<Bullet list. What gets better, easier, or more capable as a result.>
+
+### Negative
+<Bullet list. What gets harder, more expensive, or constrained. Be honest
+— if there are no negatives, you have not thought hard enough.>
+
+### Neutral
+<Bullet list. What changes but is not clearly better or worse.
+Operational implications, second-order effects.>
+
+## Alternatives considered
+
+<For each serious alternative: name, one-line summary of the approach,
+and the specific reason it was not chosen. "We considered X but it would
+have required Y, which we are not willing to accept because Z."
+
+Listing alternatives is the most important section. An ADR without
+alternatives reads as "we picked the thing we picked" — useless for
+future readers trying to reopen the decision.>
+
+### Alternative 1: <name>
+<Brief description.>
+**Rejected because:** <reason>
+
+### Alternative 2: <name>
+<Brief description.>
+**Rejected because:** <reason>
+
+## References
+
+<Links to: relevant issues / PRs, benchmarks, vendor docs, prior ADRs
+this builds on. Optional but recommended.>

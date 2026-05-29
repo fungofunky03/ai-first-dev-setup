@@ -1,0 +1,35 @@
+{
+  "_comment": "Copy this file to ~/Library/Application Support/Claude/claude_desktop_config.json (macOS) or %APPDATA%\\Claude\\claude_desktop_config.json (Windows). Replace <PLACEHOLDERS>. Remove servers you do not need.",
+  "mcpServers": {
+    "filesystem": {
+      "_comment": "Read-only access to a project directory. Restrict allowed paths tightly — anything listed here is fully readable by the model.",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "<ABSOLUTE_PATH_TO_PROJECT>"
+      ]
+    },
+    "github": {
+      "_comment": "Reads issues, PRs, code search across repos. Token must be a fine-grained PAT scoped to the repos you want the model to see.",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<GITHUB_FINE_GRAINED_PAT>"
+      }
+    },
+    "sequential-thinking": {
+      "_comment": "Gives the model a structured scratchpad for multi-step reasoning. No external network, safe to leave on.",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "memory": {
+      "_comment": "Optional. Persists facts across conversations into a local SQLite store. Disable if you prefer ephemeral sessions.",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": {
+        "MEMORY_FILE_PATH": "<ABSOLUTE_PATH_TO_MEMORY_DB>"
+      }
+    }
+  }
+}

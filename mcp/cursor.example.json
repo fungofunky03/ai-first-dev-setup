@@ -1,0 +1,27 @@
+{
+  "_comment": "Cursor reads MCP servers from ~/.cursor/mcp.json (global) or .cursor/mcp.json (per-project). Copy the mcpServers block below into that file. Replace <PLACEHOLDERS>. Remove servers you do not need.",
+  "mcpServers": {
+    "filesystem": {
+      "_comment": "Read-only access to a project directory. Cursor already has its own workspace access, so add this only if you need read access to a directory outside the open workspace (e.g. a sibling repo).",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "<ABSOLUTE_PATH_TO_OTHER_PROJECT>"
+      ]
+    },
+    "github": {
+      "_comment": "Reads issues, PRs, code search across repos. Useful when working across a multi-repo product.",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<GITHUB_FINE_GRAINED_PAT>"
+      }
+    },
+    "sequential-thinking": {
+      "_comment": "Structured scratchpad for multi-step reasoning. No external network, safe to leave on.",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    }
+  }
+}

@@ -1,0 +1,69 @@
+# <Feature name>
+
+<!--
+Starting-point feature spec for use with workflows/spec-driven-development.md.
+
+Copy to docs/specs/<feature-slug>.md, replace every <PLACEHOLDER>, fill
+each section. Keep the whole spec ≤ 400 words for v1 — if it grows past
+that, the feature is probably more than one feature.
+
+Delete this comment block before committing.
+-->
+
+**Status:** draft | in review | approved | implemented
+**Author:** <YOUR_NAME>
+**Last updated:** <YYYY-MM-DD>
+**Linked issue / RFC:** <URL or N/A>
+
+## Problem
+
+<What is wrong today, in user terms. Concrete. Two sentences max.>
+
+## Goal
+
+<What changes for the user when this ships. Single sentence. Observable.>
+
+## Non-goals
+
+<Explicitly out of scope. The most important section — bounds AI scope
+and stakeholder expectations. List at least 2-3 items here, even if
+they feel obvious. Examples:
+  - "Mobile app changes — separate effort."
+  - "Migration of existing data — separate ticket."
+  - "Admin UI for managing this feature — phase 2."
+>
+
+## User-facing surface
+
+<What the user sees or interacts with. Bullet list. Examples:
+  - New button "X" on the project detail page.
+  - New API endpoint `POST /api/foo` accepting `{ ... }`.
+  - New config option `BAR_ENABLED` (default: false).
+  - Updated email template "welcome.html" — adds Y section.
+>
+
+## Acceptance criteria
+
+<Numbered list of observable, testable statements. The reader should be
+able to verify each one in a running app. Examples:
+  1. Clicking the "Share" button copies the project URL to clipboard.
+  2. A toast appears confirming the copy, dismissing after 3 seconds.
+  3. The feature works in Safari, Chrome, and Firefox (last 2 versions).
+  4. Telemetry event `project.share.clicked` fires on click.
+>
+
+## Open questions
+
+<Anything you don't know yet. Don't invent answers. Each question should
+have a name attached — who can answer? Examples:
+  - "Do we want to support shortened URLs (bit.ly-style)? — @product"
+  - "What's the rate limit on the share endpoint? — @platform"
+>
+
+## Implementation notes (optional)
+
+<Only fill if there are non-obvious technical constraints the
+implementer must know about. Examples: a specific service must be
+called first, a feature flag wrapper is required, a particular file
+should not be touched. Otherwise leave blank — let the implementation
+decide.>
