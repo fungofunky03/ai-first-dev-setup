@@ -53,7 +53,7 @@ For the full walkthrough, see
 | `CLAUDE.md`            | Project-level context for Claude Desktop / Code (this repo's own context) |
 | `agent.md`             | Universal multi-IDE agent template (Claude Desktop, Cursor, Windsurf, Cline) |
 | `mcp/`                 | Example MCP server configs with sensible defaults                       |
-| `prompts/`             | 14 production-ready prompts across 5 categories                          |
+| `prompts/`             | 17 production-ready prompts across 5 categories                          |
 | `workflows/`           | 4 end-to-end recipes (spec-driven, onboarding, feature dev, PR flow)    |
 | `templates/`           | Starting points: `CLAUDE.md`, agent definition, feature spec, ADR        |
 | `docs/`                | Philosophy (EN + ES), getting started, customization                     |
@@ -62,9 +62,9 @@ For the full walkthrough, see
 
 - **`code-review/`** — PR review, security audit, performance review
 - **`refactor/`** — extract component, reduce complexity, migrate pattern
-- **`debug/`** — investigate a bug, root cause analysis
-- **`docs/`** — README generator, API docs, changelog from commits
-- **`tests/`** — unit tests from function, E2E scenarios, edge-case finder
+- **`debug/`** — investigate a bug, root cause analysis, triage classifier
+- **`docs/`** — README generator, API docs, changelog from commits, summarize module
+- **`tests/`** — unit tests from function, E2E scenarios, edge-case finder, LLM-as-judge eval
 
 Each prompt has YAML frontmatter (`title`, `category`, `when_to_use`,
 `tested_with`, `version`), a concrete TypeScript / React example, and

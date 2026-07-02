@@ -82,7 +82,7 @@ for overall curation).
 - `templates/CLAUDE.md.template` — placeholder version users copy into their
   own projects.
 - `mcp/*.example.json` — copy-paste MCP server configs.
-- `prompts/<category>/*.md` — 14 production-ready prompts across 5 categories.
+- `prompts/<category>/*.md` — 17 production-ready prompts across 5 categories.
 - `workflows/*.md` — 4 end-to-end recipes (spec-driven dev, onboarding,
   feature dev, PR workflow).
 - `templates/*.template` — feature spec, ADR, agent definition starting
