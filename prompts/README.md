@@ -41,6 +41,15 @@ version: 1.0
 4. **Personalisation tips** — variables you should swap to fit your stack
    or team conventions.
 
+## Quick templates
+
+If you want a bare fill-in-the-blank scaffold rather than a full, tested
+prompt, see the
+[prompt templates cheat sheet](../docs/prompt-templates-cheat-sheet.md).
+It covers the same categories plus a few more (feature implementation,
+performance, security, migrations) and links back to the full prompt in
+this library wherever one exists.
+
 ## How to use a prompt
 
 1. Open the prompt file and read the description to confirm it matches your
