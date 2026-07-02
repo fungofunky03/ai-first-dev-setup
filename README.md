@@ -70,6 +70,9 @@ Each prompt has YAML frontmatter (`title`, `category`, `when_to_use`,
 `tested_with`, `version`), a concrete TypeScript / React example, and
 personalisation tips.
 
+For quick fill-in-the-blank scaffolds across all of these categories, see
+the [prompt templates cheat sheet](./docs/prompt-templates-cheat-sheet.md).
+
 ### Workflows
 
 - **`spec-driven-development.md`** — for features that justify a spec
