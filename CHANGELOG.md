@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Three cookbook-derived prompts adapting techniques from the public
+  [Anthropic Claude Cookbooks](https://github.com/anthropics/claude-cookbooks):
+  - `tests/llm-judge-eval.md` — build an LLM-as-judge eval for a
+    non-deterministic feature (model-graded evaluation, after
+    `misc/building_evals.ipynb`).
+  - `docs/summarize-module.md` — guided, layered summary of a code module
+    (guided summarization, after `capabilities/summarization/`).
+  - `debug/triage-classifier.md` — triage a bug report or stack trace into a
+    routed classification (fixed-label classification, after
+    `capabilities/classification/`).
+
+  This brings the prompt library to 17 prompts across the same 5 categories.
+
 ## [1.0.0] — 2026-05-26
 
 Initial public release.
