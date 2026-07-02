@@ -22,7 +22,7 @@ organic discovery (stars/forks) rather than gated access.
 
 ## Repository structure
 
-```
+```text
 .
 ├── README.md                # Public entry point: hero, quick start, what's inside
 ├── CLAUDE.md                # This file — context for THIS repo
