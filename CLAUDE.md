@@ -20,6 +20,46 @@ Distributed as a lead magnet for the "IA para Developers" program by
 Learning-Heroes / HeroLabs. Public on GitHub under MIT, optimised for
 organic discovery (stars/forks) rather than gated access.
 
+## Repository structure
+
+```
+.
+├── README.md                # Public entry point: hero, quick start, what's inside
+├── CLAUDE.md                # This file — context for THIS repo
+├── CONTRIBUTING.md          # How external contributors propose prompts/workflows
+├── CHANGELOG.md             # Keep-a-Changelog format, one entry per release
+├── LICENSE                  # MIT
+├── .cursorrules             # Strict, prioritised agent rules (TS, Python, Go)
+├── .windsurfrules           # Verbatim mirror of .cursorrules
+├── agent.md                 # Universal multi-IDE agent template (placeholders)
+├── docs/
+│   ├── philosophy.md        # The *why* behind every choice (read before refactoring)
+│   ├── philosophy.es.md     # Spanish translation of philosophy.md (only ES file)
+│   ├── getting-started.md   # Full setup walkthrough
+│   └── customization.md     # Per-stack tweaks (Python, Go, …) vs. what transfers
+├── mcp/
+│   ├── README.md
+│   ├── claude-desktop.example.json
+│   └── cursor.example.json
+├── prompts/                 # 14 prompts across 5 categories (see prompts/README.md)
+│   ├── README.md            # Prompt file schema + frontmatter spec
+│   ├── code-review/         # pr-review, security-audit, performance-review
+│   ├── refactor/            # extract-component, reduce-complexity, migrate-pattern
+│   ├── debug/               # investigate-bug, root-cause-analysis
+│   ├── docs/                # readme-generator, api-docs, changelog-from-commits
+│   └── tests/               # unit-tests-from-fn, e2e-scenarios, edge-case-finder
+├── workflows/               # 4 end-to-end recipes
+│   ├── spec-driven-development.md
+│   ├── feature-development.md
+│   ├── onboarding-new-codebase.md
+│   └── pr-workflow.md
+└── templates/               # Starting points users copy into their own projects
+    ├── CLAUDE.md.template
+    ├── PROJECT_AGENT.md.template
+    ├── adr.md.template
+    └── feature-spec.md.template
+```
+
 ## Tech stack
 
 There is no runtime code in this repo. Files are:
@@ -32,6 +72,30 @@ There is no runtime code in this repo. Files are:
 No build, no compile, no tests to run. Quality control is human review by
 the claustro (Sendoa for frontend-flavoured content, Rafa for backend, Iskren
 for overall curation).
+
+Prompts are tested against the models listed in each prompt's `tested_with`
+frontmatter. As of the current release the baseline set is Claude Opus 4.7,
+Claude Sonnet 4.6, and GPT-5. `tested_with` narrows this list when a prompt
+depends on a model-specific feature.
+
+## Development workflow
+
+There is nothing to build or run, so "development" means editing prose and
+config and getting it reviewed. Typical loop:
+
+1. **Branch.** Work on a feature branch, never directly on `main`.
+2. **Edit.** Add or change files following the conventions below. Keep changes
+   scoped — one prompt, one workflow, or one doc per PR where possible.
+3. **Self-check.** There are no automated tests; instead:
+   - If you added/changed a prompt, run it against at least one model in its
+     `tested_with` list and confirm the example still reproduces.
+   - If you edited `.cursorrules`, mirror the exact change into `.windsurfrules`
+     (they must stay byte-for-byte identical).
+   - If you bumped a prompt's `version`, add a matching `CHANGELOG.md` entry.
+   - If you edited `docs/philosophy.md`, update `docs/philosophy.es.md` to match.
+4. **PR.** Open a pull request. See `CONTRIBUTING.md` for the submission
+   template and frontmatter checklist. Substantial additions should start with
+   an issue. Human review by the claustro is the merge gate.
 
 ## Conventions
 
@@ -75,7 +139,8 @@ for overall curation).
 
 - `README.md` — public entry point. Hero + quick start + what's inside.
 - `.cursorrules` / `.windsurfrules` — strict, prioritised rules an AI agent
-  must follow inside a user's project. Mirror each other verbatim.
+  must follow inside a user's project. Multi-language (TypeScript, Python, Go).
+  Mirror each other verbatim — edit both or neither.
 - `agent.md` — universal multi-IDE agent template (Claude Desktop, Cursor,
   Windsurf, Cline). Placeholders for the user's project.
 - `CLAUDE.md` — this file. Describes *this* repo.
@@ -89,5 +154,11 @@ for overall curation).
   points.
 - `docs/philosophy.md` (+ `.es.md`) — the *why* behind every choice in the
   repo. Read this before refactoring anything structural.
+- `docs/getting-started.md` — the full setup walkthrough the README links to.
+- `docs/customization.md` — which rules/prompts need per-stack tweaks (Python,
+  Go, …) and which transfer unchanged.
+- `prompts/README.md` — the prompt file schema and frontmatter spec. Read
+  before adding a prompt.
+- `mcp/README.md` — how to use the example MCP configs.
 - `CONTRIBUTING.md` — how external contributors propose new prompts.
 - `CHANGELOG.md` — Keep-a-Changelog format; one entry per release.
