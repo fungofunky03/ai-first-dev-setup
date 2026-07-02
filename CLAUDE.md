@@ -29,7 +29,7 @@ organic discovery (stars/forks) rather than gated access.
 ├── CONTRIBUTING.md          # How external contributors propose prompts/workflows
 ├── CHANGELOG.md             # Keep-a-Changelog format, one entry per release
 ├── LICENSE                  # MIT
-├── .cursorrules             # Strict, prioritised agent rules (TS/JS, Python, Go)
+├── .cursorrules             # Strict, prioritised agent rules (TypeScript/JavaScript, Python, Go)
 ├── .windsurfrules           # Verbatim mirror of .cursorrules
 ├── agent.md                 # Universal multi-IDE agent template (placeholders)
 ├── docs/
@@ -139,8 +139,7 @@ config and getting it reviewed. Typical loop:
 
 - `README.md` — public entry point. Hero + quick start + what's inside.
 - `.cursorrules` / `.windsurfrules` — strict, prioritised rules an AI agent
-  must follow inside a user's project. Multi-language (TypeScript/JavaScript,
-  Python, Go).
+  must follow inside a user's project. Multi-language (TypeScript/JavaScript, Python, Go).
   Mirror each other verbatim — edit both or neither.
 - `agent.md` — universal multi-IDE agent template (Claude Desktop, Cursor,
   Windsurf, Cline). Placeholders for the user's project.
